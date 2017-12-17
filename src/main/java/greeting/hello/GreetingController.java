@@ -1,4 +1,4 @@
-package hello;
+package greeting.hello;
 
 import java.util.concurrent.atomic.AtomicLong;
 

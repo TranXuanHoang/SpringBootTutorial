@@ -1,4 +1,4 @@
-package hello;
+package greeting.hello;
 
 /**
  * This class models a message used to response to
