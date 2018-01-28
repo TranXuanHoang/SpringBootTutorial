@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Handles request for consuming another RESTful web service.
+ * 
+ * @author Tran Xuan Hoang
+ */
 @RestController
-public class FetchData {
-	private static final Logger log = LoggerFactory.getLogger(FetchData.class);
+public class FetchDataController {
+	private static final Logger log = LoggerFactory.getLogger(FetchDataController.class);
 
 	@RequestMapping(value="/fetch-api-data")
 	public Quote fetchData() {
