@@ -66,6 +66,12 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 
+		<!-- For accessing data with MySQL (MySQL JDBC Type 4 driver) -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
 		<!-- For automatically generating get/set methods and constructors -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
