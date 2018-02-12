@@ -78,6 +78,12 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 
+		<!-- For rendering views on server side using Thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
 		<!-- For automatically generating get/set methods and constructors -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Login</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/GoogleFormStyle.css}" />
+</head>
+<body>
+	<!-- Login Form -->
+	<div class="container" th:if="${authenticated} == false">
+		<h2>
+			Login Your Account<small>Spring Boot Tutorial</small>
+		</h2>
+
+		<!-- Show error if the login information is not correct -->
+		<h5
+			th:if="${user.id} != null or ${user.name} != null or ${user.email} != null">
+			<label class="error">Your login information is not correct!</label>
+		</h5>
+
+		<form th:action="@{/account/login}" th:object="${user}" method="post">
+			<div class="group">
+				<input type="password" required="required" th:field="*{id}" /> <span
+					class="highlight"></span> <span class="bar"></span> <label>ID</label>
+			</div>
+
+			<div class="group">
+				<input type="text" required="required" th:field="*{name}" /> <span
+					class="highlight"></span> <span class="bar"></span> <label>Name</label>
+			</div>
+
+			<div class="group">
+				<input type="text" required="required" th:field="*{email}" /> <span
+					class="highlight"></span> <span class="bar"></span> <label>Email</label>
+			</div>
+
+			<div class="group">
+				<input type="submit" value="Login" /> <input type="reset"
+					value="Cancel" />
+			</div>
+		</form>
+
+		<p class="footer">
+			<a href="/forget-id" target="_blank">Forget your ID</a> | <a href="/"
+				target="_blank">Home</a>
+		</p>
+	</div>
+
+	<!-- Show welcome message if the login was successful -->
+	<div class="container" th:if="${authenticated} == true">
+		<span>Hello </span> <span class="value" th:text="${user.name}"></span><span>!</span>
+		<p style="font-size: 0.5em">
+			<span>Your Email: </span><span class="value" th:text="${user.email}"></span>
+		</p>
+	</div>
+
+	<!-- Simple version of login form
+	<h1>Login</h1>
+	<form action="#" th:action="@{/account/login}" th:object="${user}"
+		method="post">
+		<p>
+			Id: <input type="text" th:field="*{id}" />
+		</p>
+		<p>
+			Name: <input type="text" th:field="*{name}" />
+		</p>
+		<p>
+			Email: <input type="text" th:field="*{email}" />
+		</p>
+		<p>
+			<input type="submit" value="Submit" /> <input type="reset"
+				value="Reset" />
+		</p>
+	</form>
+	-->
+</body>
+</html>
