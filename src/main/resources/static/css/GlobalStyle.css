@@ -1,0 +1,24 @@
+body {
+	font-family: sans-serif;
+}
+
+table {
+	border-bottom: 1px solid gray;
+}
+
+table thead {
+	background-color: gray;
+	color: white;
+}
+
+thead tr th {
+	padding: 5px 20px 5px 20px;
+}
+
+tbody tr td {
+	padding: 5px 20px 5px 20px;
+}
+
+.even {
+	background-color: #e1e1ea;
+}

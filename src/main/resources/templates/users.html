@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Users</title>
+<link rel="stylesheet" style="text/css"
+	th:href="@{/css/GlobalStyle.css}" />
+</head>
+<body>
+	<h1>All Users</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>ID</th>
+				<th>NAME</th>
+				<th>EMAIL</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user,status : ${users}"
+				th:class="${status.count % 2 == 0} ? 'even'">
+				<td th:text="${status.count}"></td>
+				<td th:text="${user.id}"></td>
+				<td th:text="${user.name}"></td>
+				<td th:text="${user.email}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

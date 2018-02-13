@@ -14,8 +14,9 @@ import greeting.mysql.User;
 import greeting.mysql.UserRepository;
 
 /**
- * This controller handles requests relating to account. The Spring Boot's MVC
- * model using Thymeleaf to render views on the server side is the main purpose.
+ * This controller handles requests relating to account. This package
+ * demonstrates how Spring Boot's MVC model uses Thymeleaf to render views on
+ * the server side.
  * 
  * @author Tran Xuan Hoang
  */
@@ -55,5 +56,11 @@ public class AccountController {
 		}
 
 		return "login";
+	}
+
+	@GetMapping("/all")
+	public String allAccounts(Model model) {
+		model.addAttribute("users", userRepository.findAll());
+		return "users";
 	}
 }
