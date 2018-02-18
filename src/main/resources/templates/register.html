@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Register</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/GoogleFormStyle.css}" />
+</head>
+<body>
+	<div class="container">
+		<h2>Register</h2>
+		<form th:action="@{/account/register}" method="post"
+			th:object="${user}">
+			<input type="hidden" th:field="*{id}" />
+			<div class="group">
+				<input type="text" required="required" th:field="*{name}" /> <span
+					class="highlight"></span> <span class="bar"></span> <label>Name</label>
+			</div>
+
+			<div class="group">
+				<input type="text" required="required" th:field="*{email}" /> <span
+					class="highlight"></span> <span class="bar"></span> <label>Email</label>
+			</div>
+
+			<div class="group">
+				<input type="submit" value="Register" /> <input type="reset"
+					value="Cancel" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

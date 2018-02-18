@@ -53,6 +53,22 @@
 		<p style="font-size: 0.5em">
 			<span>Your Email: </span><span class="value" th:text="${user.email}"></span>
 		</p>
+
+		<form th:action="@{/account/update}" th:object="${user}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{name}" />
+			<input type="hidden" th:field="*{email}" />
+			
+			<input type="submit" value="Update Your Information" />
+		</form>
+		
+		<form th:action="@{/account/delete}" th:object="${user}" th:method="delete">
+			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{name}" />
+			<input type="hidden" th:field="*{email}" />
+			
+			<input type="submit" value="Unsubscribe" />
+		</form>
 	</div>
 
 	<!-- Simple version of login form

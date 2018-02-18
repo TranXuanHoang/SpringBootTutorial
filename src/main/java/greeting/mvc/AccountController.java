@@ -1,11 +1,16 @@
 package greeting.mvc;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,6 +61,78 @@ public class AccountController {
 		}
 
 		return "login";
+	}
+
+	@GetMapping("/register")
+	public String register(Model model) {
+		model.addAttribute("user", new User());
+		return "register";
+	}
+
+	@PostMapping("/register")
+	public String register(@Valid @ModelAttribute User user, Model model, BindingResult result) {
+		if (result.hasErrors()) {
+			// TODO
+			System.out.println(result.toString());
+			model.addAttribute("user", user);
+			return "register";
+		}
+
+		userRepository.save(user);
+
+		return "redirect:/account/all";
+	}
+
+	@PostMapping("/update")
+	public String updateForm(@ModelAttribute User user, Model model, BindingResult result) {
+		if (result.hasErrors()) {
+			// TODO
+			return null;
+		}
+
+		User authenticatedUser = userRepository.findOne(user.getId());
+
+		if (authenticatedUser == null || !authenticatedUser.getName().equals(user.getName())
+				|| !authenticatedUser.getEmail().equals(user.getEmail())) {
+			// TODO
+			return null;
+		}
+
+		model.addAttribute("user", authenticatedUser);
+
+		return "update";
+	}
+
+	@PutMapping("/update")
+	public String update(@ModelAttribute User user, Model model, BindingResult result) {
+		if (result.hasErrors()) {
+			// TODO
+			return null;
+		}
+
+		/* User savedUser = */userRepository.save(user);
+		// model.addAttribute("savedUser", savedUser);
+
+		return loginSubmit(user, model);
+	}
+
+	@DeleteMapping("/delete")
+	public String delete(@Valid @ModelAttribute User user, Model model, BindingResult result) {
+		if (result.hasErrors()) {
+			// TODO
+			return null;
+		}
+
+		// Delete user from the database
+		userRepository.delete(user);
+
+		// Clear session information that is related to the user
+		user.setId(null);
+		user.setName(null);
+		user.setEmail(null);
+		model.addAttribute("user", user);
+
+		return "unsubscribe";
 	}
 
 	@GetMapping("/all")
